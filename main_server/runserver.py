@@ -49,10 +49,14 @@ def uv_to_xz(u, v):
     return [10, 10] #coordinates
 
 def main(num):
-    capture_and_save()
-    coords = request_predict()
-    u, v = find_goal_loc_uv(num, coords)
-    x, z = uv_to_xz(u, v)
+    try:
+        capture_and_save()
+        coords = request_predict()
+        u, v = find_goal_loc_uv(num, coords)
+        x, z = uv_to_xz(u, v)
+    except Exception as e:
+        return {"success": "false", "msg": str(e)}
+
     y = 30  # constant
 
     ik = robot.inverse_kinematic([x, y, z])
@@ -60,11 +64,9 @@ def main(num):
     if ik['success'] == True:
         thetas = list(map(lambda x : int(x * 10), ik['theta']))
         arduino.runServo(thetas)
-        print("SUCCESS!")
         return {"success": "true"}
     else:
-        print("FAIL")
-        return {"success": "false"}
+        return {"success": "false", "msg": "ik failed"}
 
 # --
 app = Flask(__name__)
