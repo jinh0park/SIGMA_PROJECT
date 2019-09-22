@@ -55,11 +55,17 @@ def main(num="3"):
     y = 30  # constant
 
     ik = robot.inverse_kinematic([x, y, z])
-    print(ik)
+
+    if ik['success'] == True:
+        thetas = list(map(lambda x : int(x * 10), ik['theta']))
+        arduino.runServo(thetas)
+        print("SUCCESS!")
+    else:
+        print("FAIL") 
 
 # --
-capture_and_save()
-request_predict()
+main()
+
 
 # --
 del cam
