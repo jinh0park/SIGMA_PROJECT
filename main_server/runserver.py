@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 import requests
 import cv2
 from robotics_module.main import Robot
@@ -14,12 +15,19 @@ cam = Camera()
 robot = Robot(C.body_lengths, C.initial_pos)
 
 # --
-def func():
+def capture_and_save():
     capture = cam.capture()
     cv2.imwrite('capture.png', capture)
 
+def request_predict():
+    img_path = "capture.png"
+    res = requests.post(C.ocr_server_url, data={"img_path": img_path})
+    print(res.text)
+    return 0
 
-func()
+# --
+request_predict()
 
+# --
 del cam
 del arduino
