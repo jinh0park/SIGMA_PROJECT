@@ -9,23 +9,14 @@ sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 from config import C
 
 # Declare global variables
-try:
-    arduino = ArduinoControlBot(C.arduino_port)
-except:
-    print("Failed to connect to arduino.")
-    exit()
-try:
-    cam = Camera()
-except:
-    print("Failed to connect to camera.")
-    exit()
-
+arduino = ArduinoControl(C.arduino_port)
+cam = Camera()
 robot = Robot(C.body_lengths, C.initial_pos)
 
 # --
 def func():
     capture = cam.capture()
-    cv2.imwrite('../capture.png', capture)
+    cv2.imwrite('capture.png', capture)
 
 
 func()

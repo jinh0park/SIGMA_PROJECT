@@ -10,7 +10,7 @@ C.initial_pos = [0, 90, 0, 0]
 C.body_lengths = [0, 12, 15, 18.54]
 
 # arduino_module
-C.arduino_port = 'COM3'
+C.arduino_port = '/dev/ttyACM0'
 
 '''
 OCR server settings
