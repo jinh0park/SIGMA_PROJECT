@@ -3,7 +3,7 @@ import sys
 import json
 import requests
 import cv2
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 from robotics_module.main import Robot
 from camera_module.main import Camera
 from arduino_module.main import ArduinoControl
@@ -48,7 +48,7 @@ def uv_to_xz(u, v):
     ################
     return [10, 10] #coordinates
 
-def main(num="3"):
+def main(num):
     capture_and_save()
     coords = request_predict()
     u, v = find_goal_loc_uv(num, coords)
@@ -69,9 +69,10 @@ def main(num="3"):
 # --
 app = Flask(__name__)
 
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["POST"])
 def index():
-    res = main()
+    num = request.form.get("num")
+    res = main(num=num)
     return jsonify(res)
 
 host_addr = "127.0.0.1"
