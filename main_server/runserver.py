@@ -3,6 +3,7 @@ import sys
 import json
 import requests
 import cv2
+from flask import Flask, jsonify
 from robotics_module.main import Robot
 from camera_module.main import Camera
 from arduino_module.main import ArduinoControl
@@ -60,12 +61,23 @@ def main(num="3"):
         thetas = list(map(lambda x : int(x * 10), ik['theta']))
         arduino.runServo(thetas)
         print("SUCCESS!")
+        return {"success": "true"}
     else:
-        print("FAIL") 
+        print("FAIL")
+        return {"success": "false"}
 
 # --
-main()
+app = Flask(__name__)
 
+@app.route("/", methods=["GET"])
+def index():
+    res = main()
+    return jsonify(res)
+
+host_addr = "127.0.0.1"
+port_num = "7777"
+
+app.run(host=host_addr, port=port_num)
 
 # --
 del cam
