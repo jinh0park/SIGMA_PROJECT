@@ -25,6 +25,36 @@ def request_predict():
     print(res.text)
     return 0
 
+def find_goal_loc_uv(num, coords):
+    '''
+    Coods:
+    ┌──────> u
+    │ IMG
+    ↓
+    v
+    '''
+    assert num in coords, "Cannot find the number."
+    v1, u1, v2, u2 = coords[num]
+    u = (u1 + u2) / 2
+    v = (v1 + v2) / 2
+    return u, v
+
+def uv_to_xz(u, v):
+    ################
+    # TO BE FILLED #
+    ################
+    return [10, 10] #coordinates
+
+def main(num="3")
+    capture_and_save()
+    coords = request_predict()
+    u, v = find_goal_loc_uv(num, coords)
+    x, z = uv_to_xz(u, v)
+    y = 30  # constant
+
+    ik = robot.inverse_kinematic([x, y, z])
+    print(ik)
+
 # --
 capture_and_save()
 request_predict()
