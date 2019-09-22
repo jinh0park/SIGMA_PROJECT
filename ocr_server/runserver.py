@@ -12,9 +12,10 @@ if __name__ == "__main__":
     @app.route("/", methods=["GET"])
     def index():
         try:
-            request.get("http:127.0.0.1:7777")
+            requests.get("http:127.0.0.1:7777")
         except:
             subprocess.call(['../main_server.sh'])
+            return jsonify({"Main Server": "Opened"}) 
         return jsonify({"This is": "the index page."})
 
     @app.route("/predict", methods=["POST"])
