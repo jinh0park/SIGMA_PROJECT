@@ -9,7 +9,7 @@ class Camera:
         display_width = 1280
         display_height = 720
         framerate = 10
-        flip_method = 0
+        flip_method = 2
         pipeline = ('nvarguscamerasrc ! '
                     'video/x-raw(memory:NVMM), '
                     'width=(int)%d, height=(int)%d, '

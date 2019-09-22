@@ -17,7 +17,7 @@ robot = Robot(C.body_lengths, C.initial_pos)
 # --
 def capture_and_save():
     capture = cam.capture()
-    cv2.imwrite('capture.png', capture)
+    cv2.imwrite('../ocr_server/capture.png', capture)
 
 def request_predict():
     img_path = "capture.png"
@@ -26,6 +26,7 @@ def request_predict():
     return 0
 
 # --
+capture_and_save()
 request_predict()
 
 # --
