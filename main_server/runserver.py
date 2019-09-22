@@ -22,8 +22,10 @@ def capture_and_save():
 def request_predict():
     img_path = "capture.png"
     res = requests.post(C.ocr_server_url + "/predict", data={"img_path": img_path})
-    print(res.text)
-    return 0
+    try:
+        return json.loads(res.text)
+    except:
+        return {}
 
 def find_goal_loc_uv(num, coords):
     '''
@@ -45,7 +47,7 @@ def uv_to_xz(u, v):
     ################
     return [10, 10] #coordinates
 
-def main(num="3")
+def main(num="3"):
     capture_and_save()
     coords = request_predict()
     u, v = find_goal_loc_uv(num, coords)
