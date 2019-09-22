@@ -21,7 +21,7 @@ def capture_and_save():
 
 def request_predict():
     img_path = "capture.png"
-    res = requests.post(C.ocr_server_url, data={"img_path": img_path})
+    res = requests.post(C.ocr_server_url + "/predict", data={"img_path": img_path})
     print(res.text)
     return 0
 
