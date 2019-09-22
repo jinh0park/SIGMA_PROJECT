@@ -64,7 +64,7 @@ def main(num):
     if ik['success'] == True:
         thetas = list(map(lambda x : int(x * 10), ik['theta']))
         arduino.runServo(thetas)
-        return {"success": "true"}
+        return {"success": "true", "theta": thetas}
     else:
         return {"success": "false", "msg": "ik failed"}
 
