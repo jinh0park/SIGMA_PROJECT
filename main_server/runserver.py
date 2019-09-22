@@ -71,11 +71,14 @@ def main(num):
 # --
 app = Flask(__name__)
 
-@app.route("/", methods=["POST"])
+@app.route("/", methods=["GET", "POST"])
 def index():
-    num = request.form.get("num")
-    res = main(num=num)
-    return jsonify(res)
+    if request.method == 'POST':
+        num = request.form.get("num")
+        res = main(num=num)
+        return jsonify(res)
+    else:
+        return jsonify({"hi": "hi"})
 
 host_addr = "127.0.0.1"
 port_num = "7777"
