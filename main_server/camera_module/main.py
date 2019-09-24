@@ -4,10 +4,10 @@ import os
 class Camera:
 
     def __init__(self):
-        capture_width = 1280
-        capture_height = 720
-        display_width = 1280
-        display_height = 720
+        capture_width = 2592
+        capture_height = 2592
+        display_width = 2592
+        display_height = 2592
         framerate = 10
         flip_method = 2
         pipeline = ('nvarguscamerasrc ! '
