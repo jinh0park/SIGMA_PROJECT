@@ -1,7 +1,7 @@
 # 2019 SNU SIGMA Project
 ## Robot arm manipulator with OCR
 
-[DEMO Video](https://www.youtube.com/embed/xyuJVjmA6FM)
+[DEMO Video](https://www.youtube.com/watch?v=xyuJVjmA6FM)
 
 ![Robot Arm](/_forREADME/robotarm.png)
 
